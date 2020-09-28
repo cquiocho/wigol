@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wigol-It</title>
+    <link href="./styles/reset.css" rel="stylesheet"/>
+    <link href="./styles/base.css" rel="stylesheet"/>
+    <link href="./styles/layout.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <header>
+      <section id="app-title">
+        <h1>Wigol</h1>
+        <img src="logo" alt="logo">
+      </section>
+      <section id="nav-box">
+        <nav>
+          <ul>
+            <li><a href="link" >home</a></li>
+            <li><a href="../Team.ejs" >About Us</a></li>
+            <li><a href="link" >Library</a></li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+    <main>
+      <section>
+        <h2>Search the Databases for lyrical information</h2>
+        <p>instructions: type an artist name, song name,or a line from the song to search our database and get your lyrics!</p>
+      </section>
+      <section>
+        <fieldset>
+          <form>
+            <input type="text" id="search">
+            <select name="search-type" id="search-type">
+              <option value="artist">Artist</option>
+              <option value="Song">Song title</option>
+              <option value="Lyrics">Lyric Sample</option>
+            </select>
+            <button type="submit">WIGOL-IT</button>
+          </form>
+        </fieldset>
+    </main>
+  </body>
+  <footer>created by the Wigolers</footer>
+</html>
