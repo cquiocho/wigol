@@ -10,13 +10,12 @@
       <%- include('../../partials/header.ejs')%>
     </header>
     <main>
-      <h2>Here Are Your Search Results:</h2>
-      <section id="lyric-results">
-        <%= arrayofresults.forEach(song =>{ %>
+      <h2>Here Are Your Saved songs:">
+        <%= arrayofresults.forEach(storedSong =>{ %>
           <!-- partial built for following section wanted to test ejs befor converting -->
           <ul class="song">
-            <li class="title">Song Title: <%= song.title %></li>
-            <li class="artist">Artist Name: <%= song.artist %></li>
+            <li class="title">Song Title: <%= storedSong.title %></li>
+            <li class="artist">Artist Name: <%= storedSong.artist %></li>
           </ul>
         })
       </section>
