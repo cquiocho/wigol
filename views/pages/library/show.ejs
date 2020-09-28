@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <!-- partials to be checked for functionality -->
+  <head>
+    <title>Wigol results</title>
+    <%- include('../../partials/head.ejs')%>
+  </head>
+  <body>
+    <header>
+      <%- include('../../partials/header.ejs')%>
+    </header>
+    <main>
+      <h2>Here Are Your Saved songs:">
+        <%= arrayofresults.forEach(storedSong =>{ %>
+          <!-- partial built for following section wanted to test ejs befor converting -->
+          <ul class="song">
+            <li class="title">Song Title: <%= storedSong.title %></li>
+            <li class="artist">Artist Name: <%= storedSong.artist %></li>
+          </ul>
+        })
+      </section>
+    </main>
+  <footer>
+    <%- include('../../partials/footer.ejs')%>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <!-- partials to be checked for functionality -->
+  <head>
+    <title>Wigol results</title>
+    <%- include('../../partials/head.ejs')%>
+  </head>
+  <body>
+    <header>
+      <%- include('../../partials/header.ejs')%>
+    </header>
+    <main>
+      <h2>Here Are Your Search Results:</h2>
+      <section id="library-details">
+          <ul class="song">
+            <!-- next 3 lines can be replaced with results partial -->
+            <li class="title">Song Title: <%= storedSong.title %></li>
+            <li class="artist">Artist Name: <%= storedSong.artist %></li>
+            <li class="lyrics">Song Lyrics: <%= storedSong.lyrics %></li>
+            
+          <form action="/addSong" method="POST">
+            <fieldset>
+              <input type="hidden" name="title" value="<%=storedSong.title %>"></input>
+              <input type="hidden" name="artist" value="<%=storedSong.artist %>"></input>
+              <input type="hidden" name="lyrics" value="<%=storedSong.lyrics %>"></input>
+              <button type="submit">Edit Song!</button>
+            </fieldset>
+          </form>
+          </ul>
+      </section>
+    </main>
+    <footer>
+      <%- include('../../partials/footer.ejs')%>
+    </footer>
+  </body>
+
+</html>
