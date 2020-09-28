@@ -11,9 +11,21 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 - Lee Thomas
 - Matt Ravenmoore
 
+## Getting Started
+
+1. Install Dependencies: Use "npm i"
+
+- cors
+- dotenv
+- ejs
+- express
+- pg
+- method-override
+- superAgent
+
 ### Wireframes
 
-![Alt Text](images/wigol-wireframe.jpg)
+![Alt Text](images/wireframe-wigol.jpg)
 
 ### User Stories
 
@@ -47,12 +59,14 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 - Library Page: wigol.ejs => Song will be stored in database and displayed. User will have the option to update/delete song info. Upon doing so, user will be redirected to same page.
 
 
-### Databse Relationship
+### Database Relationship
 
 1. key PRIMARY SERIAL NUMBER
 1. song name VARCHAR(255)
 1. artist name VARCHAR(255)
 1. lyrics TEXT
 1. copyright VARCHAR(255)
+
+
 
 
