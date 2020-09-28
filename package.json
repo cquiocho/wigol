@@ -1,0 +1,30 @@
+{
+  "name": "wigol",
+  "version": "1.0.0",
+  "description": "Have you ever thought of a song and just couldn't remember the lyrics? Or heard a song and thought, \"What are they saying? Did I hear what I think I heard?\" If so, this is an application for you!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cquiocho/wigol.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cquiocho/wigol/issues"
+  },
+  "homepage": "https://github.com/cquiocho/wigol#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "pg": "^8.3.3",
+    "superagent": "^6.1.0"
+  }
+}
