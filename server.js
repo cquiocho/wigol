@@ -17,10 +17,10 @@ app.use(cors());
 
 // Port Setup
 const PORT = process.env.PORT || 3001
-// const client = new pg.Client(process.env.DATABASE_URL);
-// client.on('error', error => {
-//     console.log(error);
-// });
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', error => {
+    console.log(error);
+});
 
 // Middleware
 app.set('view engine', 'ejs');
@@ -31,11 +31,10 @@ app.use(methodOverride('_method'));
 // Routes
 
 // Connect Port
-// client.connect()
-//     .then(() => {
-//         app.listen(PORT, () => {
-//             console.log(`Wigoling on ${PORT}`);
-//         });
-//     })
-
-app.listen(PORT, () => console.log(`App is listening on ${PORT}`));    
+client.connect()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Wigoling on ${PORT}`);
+        });
+    })
+  
