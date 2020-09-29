@@ -12,19 +12,16 @@
     <main>    
       <h2>Here Are Your Search Results:</h2>
       <section id="lyric-results">
-        <%= arrayofresults.forEach(song =>{ %>
-      
           <!-- partial built for following section wanted to test ejs befor converting -->
           <ul class="song">
-            <li class="title">Song Title: <%= song.title %></li>
-            <li class="artist">Artist Name: <%= song.artist %></li>
+            <li class="title">Song Title: <%= info.title %></li>
+            <li class="artist">Artist Name: <%= info.artist %></li>
+            <li class="lyrics">Lyrics: <%= info.lyrics %></li>
           </ul>
-        })
       </section>
     </main>
     <footer>
       <%- include('../../partials/footer.ejs')%>
     </footer>
   </body>
-
 </html>
