@@ -1,0 +1,44 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #1C5253;
+  margin: auto;
+  /* border:2px dashed red; */
+  width: 420px;
+}
+main{
+  height: 300px;
+}
+header{
+  border-bottom: 2.25px inset #f85e00;
+  border-radius: 0 0 22px 22px; 
+}
+h1{
+  font-size: 54px;
+  color: darkorange;
+  font-family: 'Fredericka the Great', cursive;
+}
+h2{
+  font-size: 28px;
+  color: darkorange;
+  font-family: 'Fredericka the Great', cursive;
+}
+h4{
+  font-size: 18px;
+  color: darkorange;
+  font-family: 'Fredericka the Great', cursive;
+
+}
+p{
+  font-size: 14px;
+  color: darkgoldenrod;
+  font-family: 'Architects Daughter', cursive;
+}
+a{
+  color: limegreen;
+}
+a:hover{
+  color:darkgreen;
+}

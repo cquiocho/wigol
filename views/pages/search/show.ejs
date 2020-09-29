@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <!-- partials to be checked for functionality -->
+  <head>
+    <title>Wigol results</title>
+    <%- include('../../partials/head.ejs')%>
+  </head>
+  <body>
+    <header>
+      <%- include('../../partials/header.ejs')%>
+    </header>
+    <main>    
+      <h2>Here Are Your Search Results:</h2>
+      <ul class="song">
+        <li class="title">Song Title: <%= info.title %></li>
+        <li class="artist">Artist Name: <%= info.artist %></li>
+        <li class="lyrics">Lyrics: <%= info.lyrics %></li>
+      </ul>
+      <form id="lyric-results" action="/songs" method="post">
+          <!-- partial built for following section wanted to test ejs befor converting -->
+        <input type="hidden" name="title" value="<%= info.title %>">
+        <input type="hidden" name="artist" value="<%= info.artist %>">
+        <input type="hidden" name="lyrics" value="<%= info.lyrics %>">
+          <button type="submit">Add to Favorites</button>
+        </form>
+    </main>
+    <footer>
+      <%- include('../../partials/footer.ejs')%>
+    </footer>
+  </body>
+</html>

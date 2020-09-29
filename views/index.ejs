@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wigol-It</title>
+    <%- include('partials/head.ejs')%>
+  </head>
+  <body>
+    <header>
+      <%- include('partials/header.ejs')%>
+    </header>
+    <main>
+      <section id="intro">
+        <h2>Search the Databases for lyrical information</h2>
+        <p>Directions: Type an artist name and song nameto search our database and get your lyrics!</p>
+      </section>
+      <section id="search-bar">
+        <form action="/search" method="GET">
+          <fieldset>
+            <input type="text" name="artist" class="search-input" placeholder="Artist Name"></input>
+            <input type="text" name="song" class="search-input" placeholder="Song Name"></input>
+            <button id="wigol-btn" type="submit"><h4>WIGOL-IT</h4></button>
+          </fieldset>  
+        </form>
+      </section>  
+    </main>
+  <footer>
+      <%- include('partials/footer.ejs')%>
+  </footer>
+  </body>
+  
+
+</html>
