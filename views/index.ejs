@@ -2,41 +2,31 @@
 <html>
   <head>
     <title>Wigol-It</title>
-    <link href="./styles/reset.css" rel="stylesheet"/>
-    <link href="./styles/base.css" rel="stylesheet"/>
-    <link href="./styles/layout.css" rel="stylesheet"/>
+    <%- include('partials/head.ejs')%>
   </head>
   <body>
     <header>
-      <section id="app-title">
-        <h1>Wigol</h1>
-        <img src="logo" alt="logo">
-      </section>
-      <section id="nav-box">
-        <nav>
-          <ul>
-            <li><a href="link" >home</a></li>
-            <li><a href="../Team.ejs" >About Us</a></li>
-            <li><a href="link" >Library</a></li>
-          </ul>
-        </nav>
-      </section>
+      <%- include('partials/header.ejs')%>
     </header>
     <main>
-      <section>
+      <section id="intro">
         <h2>Search the Databases for lyrical information</h2>
         <p>Directions: Type an artist name and song nameto search our database and get your lyrics!</p>
       </section>
-      <section>
+      <section id="search-bar">
         <form action="/search" method="GET">
           <fieldset>
-            <input type="text" name="artist" id="search">Artist Name</input>
-            <input type="text" name="song" id="search">Song Name</input>
-            <button type="submit">WIGOL-IT</button>
+            <input type="text" name="artist" class="search-input" placeholder="Artist Name"></input>
+            <input type="text" name="song" class="search-input" placeholder="Song Name"></input>
+            <button id="wigol-btn" type="submit"><h4>WIGOL-IT</h4></button>
           </fieldset>  
         </form>
       </section>  
     </main>
+  <footer>
+      <%- include('partials/footer.ejs')%>
+  </footer>
   </body>
-  <footer>created by the Wigolers</footer>
+  
+
 </html>

@@ -6,6 +6,7 @@ require('ejs');
 
 // Application Dependencies
 const cors = require('cors');
+const { request, response } = require('express');
 const express = require('express');
 const methodOverride = require('method-override');
 const pg = require('pg');
@@ -30,6 +31,9 @@ app.use(methodOverride('_method'));
 
 // Routes
 app.get('/', renderHomePage);
+app.get('/team', (request, response)=>{
+    response.status(200).render('pages/team')
+})
 app.get('/search', getSearchResults);
 
 function renderHomePage(request, response) {
@@ -45,7 +49,7 @@ function getSearchResults(request, response) {
     // }
     superagent.get(url)
         .then(data => {
-            console.log(data);
+            console.log(data.body);
             let info = {};
             info.lyrics = data.body.lyrics;
             info.artist = request.query.artist;
