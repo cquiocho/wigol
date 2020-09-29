@@ -25,20 +25,17 @@
     <main>
       <section>
         <h2>Search the Databases for lyrical information</h2>
-        <p>instructions: type an artist name, song name,or a line from the song to search our database and get your lyrics!</p>
+        <p>Directions: Type an artist name and song nameto search our database and get your lyrics!</p>
       </section>
       <section>
-        <fieldset>
-          <form>
-            <input type="text" id="search">
-            <select name="search-type" id="search-type">
-              <option value="artist">Artist</option>
-              <option value="Song">Song title</option>
-              <option value="Lyrics">Lyric Sample</option>
-            </select>
+        <form action="/search" method="GET">
+          <fieldset>
+            <input type="text" name="artist" id="search">Artist Name</input>
+            <input type="text" name="song" id="search">Song Name</input>
             <button type="submit">WIGOL-IT</button>
-          </form>
-        </fieldset>
+          </fieldset>  
+        </form>
+      </section>  
     </main>
   </body>
   <footer>created by the Wigolers</footer>
