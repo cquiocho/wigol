@@ -38,15 +38,19 @@ function renderHomePage(request, response) {
 
 function getSearchResults(request, response) {
     // console.log(request.query);
-    let url = 'https://api.lyrics.ovh/v1/';
-    const queryObject = {
-        artist: request.query.artist,
-        song: request.query.song
-    }
-    superagent.get(url).query(queryObject)
+    let url = `https://api.lyrics.ovh/v1/${request.query.artist}/${request.query.song}`;
+    // const queryObject = {
+    //     artist: request.query.artist,
+    //     title: request.query.song
+    // }
+    superagent.get(url)
         .then(data => {
             console.log(data);
-            const info = data.map(object => new Words(object));
+            let info = {};
+            info.lyrics = data.body.lyrics;
+            info.artist = request.query.artist;
+            info.title = request.query.song;
+            console.log(info);
             response.status(200).render('pages/search/show', {info : info});
         })
         .catch(error => {
@@ -65,10 +69,10 @@ function getSearchResults(request, response) {
     //     })
 }
 
-function Words(object) {
-    this.artist = object.artist;
-    this.song = object.song;
-}
+// function Words(object) {
+//     this.artist = object.artist;
+//     this.song = object.song;
+// }
 
 // Connect Port
 client.connect()
