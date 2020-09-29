@@ -31,15 +31,40 @@ app.use(methodOverride('_method'));
 
 // Routes
 app.get('/', renderHomePage);
-app.get('/team', (request, response)=>{
-    response.status(200).render('pages/team')
-})
+app.get('/team', renderTeamPage);
 app.get('/search', getSearchResults);
+app.post('/songs', addSongToDatabase);
 // Details Callback Function
-// Favorites Callback Function
 // Update Callback Function
 // Delete Callback Function
 // Catch All Error Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -104,6 +129,13 @@ function getSearchResults(request, response) {
     //     })
 }
 
+function renderTeamPage(request, response) {
+    response.status(200).render('pages/team');
+}
+
+function addSongToDatabase(request,respond) {
+    const {lyrics, artist, song} = request.body;
+}
 // function Words(object) {
 //     this.artist = object.artist;
 //     this.song = object.song;
