@@ -35,6 +35,37 @@ app.get('/team', (request, response)=>{
     response.status(200).render('pages/team')
 })
 app.get('/search', getSearchResults);
+// Details Callback Function
+// Favorites Callback Function
+// Update Callback Function
+// Delete Callback Function
+// Catch All Error Function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function renderHomePage(request, response) {
     response.status(200).render('index.ejs');
