@@ -1,0 +1,23 @@
+#nav-box{
+  height: 35px;
+}
+#app-title{
+  height: 75px;
+  background-color: rgba(0,0,0,.3);
+  justify-content:center;
+  align-items: center;
+  border-bottom:2.25px inset #f85e00;
+  border-radius: 0 0 45px 45px;
+  display: flex;
+}
+#intro{
+  height: 150px;
+  width: 85%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+#search-bar{
+  display: flex;
+  justify-content: center;
+}
