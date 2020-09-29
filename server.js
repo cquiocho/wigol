@@ -34,10 +34,10 @@ app.get('/', renderHomePage);
 app.get('/team', renderTeamPage);
 app.get('/search', getSearchResults);
 app.post('/songs', addSongToDatabase);
-// Details Callback Function
-// Update Callback Function
-// Delete Callback Function
-// Catch All Error Function
+app.get('/library', renderLibrary);
+app.delete('/delete/:song_id', deleteSong);
+app.get('/details/:song_id', songDetails);
+app.get('*', handleError);
 
 
 
@@ -99,10 +99,7 @@ function renderHomePage(request, response) {
 function getSearchResults(request, response) {
     // console.log(request.query);
     let url = `https://api.lyrics.ovh/v1/${request.query.artist}/${request.query.song}`;
-    // const queryObject = {
-    //     artist: request.query.artist,
-    //     title: request.query.song
-    // }
+
     superagent.get(url)
         .then(data => {
             console.log(data.body);
@@ -110,7 +107,7 @@ function getSearchResults(request, response) {
             info.lyrics = data.body.lyrics;
             info.artist = request.query.artist;
             info.title = request.query.song;
-            console.log(info);
+            // console.log(info);
             response.status(200).render('pages/search/show', {info : info});
         })
         .catch(error => {
@@ -133,8 +130,51 @@ function renderTeamPage(request, response) {
     response.status(200).render('pages/team');
 }
 
-function addSongToDatabase(request,respond) {
-    const {lyrics, artist, song} = request.body;
+function renderLibrary(request, response) {
+    const sql = 'SELECT * FROM chartlyric;';
+    client.query(sql)
+        .then(favoriteInfo => {
+            let arrayofresults = favoriteInfo.rows;
+            response.render('pages/library/show', {arrayofresults : arrayofresults});
+        })
+}
+
+function addSongToDatabase(request,response) {
+    const {lyrics, artist, title} = request.body;
+    console.log(request.body);
+    const sql = 'INSERT INTO chartlyric (lyrics, artist, song) VALUES ($1, $2, $3);';
+    const safeValues = [lyrics, artist, title];
+    client.query(sql, safeValues)
+        .then((databaseInfo) => {
+            response.redirect('/library');
+        })
+}
+
+function deleteSong(request, response) {
+    const id = request.params.song_id;
+    const sql = 'DELETE FROM chartlyric WHERE id=$1;';
+    const safeValues = [id];
+    client.query(sql, safeValues)
+        .then((item) => {
+            response.redirect('/library');
+        })
+}
+
+function songDetails(request, response) {
+    const id = request.params.song_id;
+    const sql = 'SELECT * FROM chartlyric WHERE id=$1;';
+    const safeValues = [id];
+    client.query(sql, safeValues)
+    .then((info) => {
+        const storedSong = info.rows[0];
+        console.log(storedSong);
+        response.render('pages/library/detail.ejs', {storedSong : storedSong});
+        // PLEASE CHECK CSS PATH
+    });
+}
+
+function handleError(request, response) {
+    response.status(404).render('error.ejs');
 }
 // function Words(object) {
 //     this.artist = object.artist;
