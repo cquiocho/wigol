@@ -6,8 +6,8 @@ require('ejs');
 
 // Application Dependencies
 const cors = require('cors');
-
 const passport = require('passport');
+const authCallbackPath = '/auth/spotify/callback';
 
 const SpotifyStrategy = require('passport-spotify').Strategy;
 
@@ -43,11 +43,36 @@ app.post('/songs', addSongToDatabase);
 app.get('/library', renderLibrary);
 app.delete('/delete/:song_id', deleteSong);
 app.get('/details/:song_id', songDetails);
+app.get('/spotifysearch',spotifyPing);
+
+// spotify Routes dont touch
+app.get('/auth/spotify',
+  passport.authenticate('spotify',
+    { scope: ['user-read-email', 'user-read-private'],
+      showDialog: true})
+);
+
+
+//   GET /auth/spotify/callback
+//     Use passport.authenticate() as route middleware to authenticate the
+//     request. If authentication fails, the user will be redirected back to the
+//     login page. Otherwise, the primary route function function will be called,
+//     which, in this example, will redirect the user to the home page.
+
+app.get( authCallbackPath,
+  passport.authenticate('spotify', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.send("spot data")
+  });
+app.get('/login', function (req, res) {
+  res.status(200).send('we are pineapple');
+})
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
 app.get('*', handleError);
-
-// ====================================================================================================
-
-const authCallbackPath = '/auth/spotify/callback';
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -78,32 +103,6 @@ passport.use(
   )
 );
 
-app.get('/auth/spotify',
-  passport.authenticate('spotify',
-    { scope: ['user-read-email', 'user-read-private'],
-      showDialog: true})
-);
-//   GET /auth/spotify/callback
-//     Use passport.authenticate() as route middleware to authenticate the
-//     request. If authentication fails, the user will be redirected back to the
-//     login page. Otherwise, the primary route function function will be called,
-//     which, in this example, will redirect the user to the home page.
-
-app.get( authCallbackPath,
-  passport.authenticate('spotify', { failureRedirect: '/login' }),
-  function (req, res) {
-    res.redirect('/');
-  }
-);
-app.get('/login', function (req, res) {
-  res.status(200).send('we are pineapple');
-})
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
-
-// ==================================================================================================
 
 function renderHomePage(request, response) {
   response.status(200).render('index.ejs');
@@ -182,10 +181,26 @@ function songDetails(request, response) {
     .then((info) => {
         const storedSong = info.rows[0];
         console.log(storedSong);
-        response.render('pages/library/detail.ejs', {storedSong : storedSong});
+        response.render('pages/library/detail', {storedSong : storedSong});
         // PLEASE CHECK CSS PATH
     });
 }
+
+function spotifyPing(req,res){
+
+  let url = `https://api.spotify.com/v1/search/q=name:Queen`;
+
+  superagent.get(url)
+  .then(data => {
+      console.log(data.body);
+  })
+  .catch(error => {
+      console.log(error)
+      res.render('error.ejs');
+  })}
+
+
+
 
 function handleError(request, response) {
     response.status(404).render('error.ejs');
