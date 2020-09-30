@@ -15,24 +15,21 @@ header{
   border-bottom: 2.25px inset #f85e00;
   border-radius: 0 0 22px 22px; 
 }
-h1{
-  font-size: 54px;
+h1,h2,h3,h4,h5,h6 {
   color: darkorange;
   font-family: 'Fredericka the Great', cursive;
+}
+h1{
+  font-size: 54px;
 }
 h2{
   font-size: 28px;
-  color: darkorange;
-  font-family: 'Fredericka the Great', cursive;
 }
 h4{
   font-size: 18px;
-  color: darkorange;
-  font-family: 'Fredericka the Great', cursive;
-
 }
 p{
-  font-size: 14px;
+  font-size: 12px;
   color: darkgoldenrod;
   font-family: 'Architects Daughter', cursive;
 }

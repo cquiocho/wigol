@@ -32,7 +32,7 @@ client.on('error', error => {
 // Middleware
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
-app.use(express.urlencoded({extended : true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 // Routes
@@ -43,13 +43,15 @@ app.post('/songs', addSongToDatabase);
 app.get('/library', renderLibrary);
 app.delete('/delete/:song_id', deleteSong);
 app.get('/details/:song_id', songDetails);
-app.get('/spotifysearch',spotifyPing);
+app.get('/spotifysearch', spotifyPing);
 
 // spotify Routes dont touch
 app.get('/auth/spotify',
   passport.authenticate('spotify',
-    { scope: ['user-read-email', 'user-read-private'],
-      showDialog: true})
+    {
+      scope: ['user-read-email', 'user-read-private'],
+      showDialog: true
+    })
 );
 
 
@@ -59,10 +61,11 @@ app.get('/auth/spotify',
 //     login page. Otherwise, the primary route function function will be called,
 //     which, in this example, will redirect the user to the home page.
 
-app.get( authCallbackPath,
+app.get(authCallbackPath,
   passport.authenticate('spotify', { failureRedirect: '/login' }),
   function (req, res) {
-    res.send("spot data")
+    console.log(res.body)
+    res.json(res.body)
   });
 app.get('/login', function (req, res) {
   res.status(200).send('we are pineapple');
@@ -110,33 +113,33 @@ function renderHomePage(request, response) {
 
 function getSearchResults(request, response) {
 
-    // console.log(request.query);
-    let url = `https://api.lyrics.ovh/v1/${request.query.artist}/${request.query.song}`;
+  // console.log(request.query);
+  let url = `https://api.lyrics.ovh/v1/${request.query.artist}/${request.query.song}`;
 
-    superagent.get(url)
-        .then(data => {
-            console.log(data.body);
-            let info = {};
-            info.lyrics = data.body.lyrics;
-            info.artist = request.query.artist;
-            info.title = request.query.song;
-            // console.log(info);
-            response.status(200).render('pages/search/show', {info : info});
-        })
-        .catch(error => {
-            console.log(error)
-            response.render('error.ejs');
-        })
-    // const sql = 'SELECT * FROM chartlyric;';
-    // client.query(sql)
-    //     .then(results => {
-    //         let mySongs = results.rows;
-    //         response.status(200).render('pages/search/show', {mySongs : mySongs});
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //         response.render('error.ejs');
-    //     })
+  superagent.get(url)
+    .then(data => {
+      console.log(data.body);
+      let info = {};
+      info.lyrics = data.body.lyrics;
+      info.artist = request.query.artist;
+      info.title = request.query.song;
+      // console.log(info);
+      response.status(200).render('pages/search/show', { info: info });
+    })
+    .catch(error => {
+      console.log(error)
+      response.render('error.ejs');
+    })
+  // const sql = 'SELECT * FROM chartlyric;';
+  // client.query(sql)
+  //     .then(results => {
+  //         let mySongs = results.rows;
+  //         response.status(200).render('pages/search/show', {mySongs : mySongs});
+  //     })
+  //     .catch(error => {
+  //         console.log(error)
+  //         response.render('error.ejs');
+  //     })
 }
 
 function renderTeamPage(request, response) {
@@ -144,66 +147,70 @@ function renderTeamPage(request, response) {
 }
 
 function renderLibrary(request, response) {
-    const sql = 'SELECT * FROM chartlyric;';
-    client.query(sql)
-        .then(favoriteInfo => {
-            let arrayofresults = favoriteInfo.rows;
-            response.render('pages/library/show', {arrayofresults : arrayofresults});
-        })
+  const sql = 'SELECT * FROM chartlyric;';
+  client.query(sql)
+    .then(favoriteInfo => {
+      let arrayofresults = favoriteInfo.rows;
+      response.render('pages/library/show', { arrayofresults: arrayofresults });
+    })
 }
 
-function addSongToDatabase(request,response) {
-    const {lyrics, artist, title} = request.body;
-    console.log(request.body);
-    const sql = 'INSERT INTO chartlyric (lyrics, artist, song) VALUES ($1, $2, $3);';
-    const safeValues = [lyrics, artist, title];
-    client.query(sql, safeValues)
-        .then((databaseInfo) => {
-            response.redirect('/library');
-        })
+function addSongToDatabase(request, response) {
+  const { lyrics, artist, title } = request.body;
+  console.log(request.body);
+  const sql = 'INSERT INTO chartlyric (lyrics, artist, song) VALUES ($1, $2, $3);';
+  const safeValues = [lyrics, artist, title];
+  client.query(sql, safeValues)
+    .then((databaseInfo) => {
+      response.redirect('/library');
+    })
 }
 
 function deleteSong(request, response) {
-    const id = request.params.song_id;
-    const sql = 'DELETE FROM chartlyric WHERE id=$1;';
-    const safeValues = [id];
-    client.query(sql, safeValues)
-        .then((item) => {
-            response.redirect('/library');
-        })
+  const id = request.params.song_id;
+  const sql = 'DELETE FROM chartlyric WHERE id=$1;';
+  const safeValues = [id];
+  client.query(sql, safeValues)
+    .then((item) => {
+      response.redirect('/library');
+    })
 }
 
 function songDetails(request, response) {
-    const id = request.params.song_id;
-    const sql = 'SELECT * FROM chartlyric WHERE id=$1;';
-    const safeValues = [id];
-    client.query(sql, safeValues)
+  const id = request.params.song_id;
+  const sql = 'SELECT * FROM chartlyric WHERE id=$1;';
+  const safeValues = [id];
+  client.query(sql, safeValues)
     .then((info) => {
-        const storedSong = info.rows[0];
-        console.log(storedSong);
-        response.render('pages/library/detail', {storedSong : storedSong});
-        // PLEASE CHECK CSS PATH
+      const storedSong = info.rows[0];
+      console.log(storedSong);
+      response.render('pages/library/detail', { storedSong: storedSong });
+      // PLEASE CHECK CSS PATH
     });
 }
 
-function spotifyPing(req,res){
+function spotifyPing(req, res) {
 
   let url = `https://api.spotify.com/v1/search/q=name:Queen`;
 
   superagent.get(url)
-  .then(data => {
+  .set('Authorization', )
+    .then(data => {
       console.log(data.body);
-  })
-  .catch(error => {
+
+
+    })
+    .catch(error => {
       console.log(error)
       res.render('error.ejs');
-  })}
+    })
+}
 
 
 
 
 function handleError(request, response) {
-    response.status(404).render('error.ejs');
+  response.status(404).render('error.ejs');
 }
 // function Words(object) {
 //     this.artist = object.artist;
