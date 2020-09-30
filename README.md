@@ -1,5 +1,10 @@
 # Project: WIGOL
 
+- Version 1.0.0 - 09/28/2020 - Initial application start and setup.
+- Version 1.1.0 - 09/28/2020 - API connectivity, 'home' and 'search results' pages complete. Overall functionality is minimal.
+- Version 1.2.0 - 09/29/20200 - Styling added, 'favorites' and 'song details' pages added. Overall functionality is improved and more dynamic.
+- Version 2.0.0 - 09/29/2020 - Minimum viable product achieved. 
+
 Have you ever thought of a song and just couldn't remember the lyrics? Or heard a song and thought, "What are they saying? Did I hear what I think I heard?" If so, this is an application for you! 
 
 Introducing Wigol, an application that will retrieve data from a third-party API that will include lyrics, song name and artist name. You will have the option to save your favorite lyrics to your own library and easily make updates to your list of songs.
@@ -13,7 +18,7 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 
 ## Getting Started
 
-1. Install Dependencies: Use "npm i"
+1. Install Dependencies: Use "npm i":
 
 - cors
 - dotenv
@@ -25,7 +30,7 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 
 ### Wireframes
 
-![Alt Text](images/wireframe-wigol.jpg)
+![Alt Text](public/images/wireframe-wigol.jpg)
 
 ### User Stories
 
@@ -33,11 +38,11 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 
 ### Software Requirements
 
-- Wigol would provide lyrics and overall information of the song including title, artist, album, genre. This application will generate numerous types of information in one place for easy access.
+- Wigol will provide song title, artist name and lyrics all in one place.
 
 - Wigol will not find products related to the song or album (merchandise, videos, etc.), results are strictly related to the music. 
 
-**MVP**: Wigol will take in information from a search form and retrieve 20 related songs that will include lyrics, title, artist and copyright information. User will be able to save ‘favorite songs’ to a library that will have the option to update/delete song information.
+**MVP**: Wigol will take in information from a search form and retrieve a song that will include lyrics, title and artist information. User will be able to save ‘favorite songs’ to a library that will have the option to delete song information.
 
 **Stretch Goals: Generate a karaoke feature that will sync music and lyrics to scroll over a background of album art.**
 
@@ -50,22 +55,30 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 
 ### Domain Modeling
 
-![Alt Text](images/wrrc-diagram.jpg)
+![Alt Text](public/images/wrrc-diagram.jpg)
 
 - Homepage: index.ejs => Search Form: by ‘artist name’ or by ‘song name’ or ‘by snippet of lyrics’.
 
-- Results Page: show.ejs => API information presented in a list (limit 20) with ‘add to library’ button. When user clicks on button it will take them to their library/collection.
+- Results Page: pages/show.ejs => API information presented in a block with ‘add to library’ button. When user clicks on button it will take them to their library collection.
 
-- Library Page: wigol.ejs => Song will be stored in database and displayed. User will have the option to update/delete song info. Upon doing so, user will be redirected to same page.
+- Library Page: library/show.ejs => Song will be stored in database and displayed in a list. User will have the option to delete or view details of song info. Upon doing so, user will be redirected to same page.
 
+- Detail Page: library/detail.ejs => Selected song will be displayed with song title, artist name and lyrics.
 
-### Database Relationship
+### API 
 
-1. key PRIMARY SERIAL NUMBER
-1. song name VARCHAR(255)
-1. artist name VARCHAR(255)
+**https://lyrics.ovh/**
+
+![Alt Text](public/images/lyricsovh-api-endpoint.PNG)
+
+### Database Schemas
+
+1. id SERIAL PRIMARY KEY
+1. artist VARCHAR(255)
+1. song VARCHAR(255)
 1. lyrics TEXT
-1. copyright VARCHAR(255)
+
+
 
 
 
