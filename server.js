@@ -6,7 +6,12 @@ require('ejs');
 
 // Application Dependencies
 const cors = require('cors');
-const { request, response } = require('express');
+
+const passport = require('passport');
+
+const SpotifyStrategy = require('passport-spotify').Strategy;
+
+// const { request, response } = require('express');
 const express = require('express');
 const methodOverride = require('method-override');
 const pg = require('pg');
@@ -15,12 +20,13 @@ const superagent = require('superagent');
 // Application Setup
 const app = express();
 app.use(cors());
+app.use(passport.initialize());
 
 // Port Setup
 const PORT = process.env.PORT || 3001
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', error => {
-    console.log(error);
+  console.log(error);
 });
 
 // Middleware
@@ -39,64 +45,72 @@ app.delete('/delete/:song_id', deleteSong);
 app.get('/details/:song_id', songDetails);
 app.get('*', handleError);
 
+// ====================================================================================================
 
+const authCallbackPath = '/auth/spotify/callback';
 
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
 
+passport.deserializeUser(function (obj, done) {
+  done(null, obj);
+});
 
+passport.use(
+  new SpotifyStrategy(
+    {
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL: 'http://localhost:' + PORT + authCallbackPath,
+    },
+    //   callbackURL will change when we have to deploy to heroku
+    function (accessToken, refreshToken, expires_in, profile, done) {
+      // asynchronous verification, for effect...
+      process.nextTick(function () {
+        // To keep the example simple, the user's spotify profile is returned to
+        // represent the logged-in user. In a typical application, you would want
+        // to associate the spotify account with a user record in your database,
+        // and return that user instead.
+        return done(null, profile);
+      });
+    }
+  )
+);
 
+app.get('/auth/spotify',
+  passport.authenticate('spotify',
+    { scope: ['user-read-email', 'user-read-private'],
+      showDialog: true})
+);
+//   GET /auth/spotify/callback
+//     Use passport.authenticate() as route middleware to authenticate the
+//     request. If authentication fails, the user will be redirected back to the
+//     login page. Otherwise, the primary route function function will be called,
+//     which, in this example, will redirect the user to the home page.
 
+app.get( authCallbackPath,
+  passport.authenticate('spotify', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+  }
+);
+app.get('/login', function (req, res) {
+  res.status(200).send('we are pineapple');
+})
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ==================================================================================================
 
 function renderHomePage(request, response) {
-    response.status(200).render('index.ejs');
+  response.status(200).render('index.ejs');
 }
 
 function getSearchResults(request, response) {
+
     // console.log(request.query);
     let url = `https://api.lyrics.ovh/v1/${request.query.artist}/${request.query.song}`;
 
@@ -127,7 +141,7 @@ function getSearchResults(request, response) {
 }
 
 function renderTeamPage(request, response) {
-    response.status(200).render('pages/team');
+  response.status(200).render('pages/team');
 }
 
 function renderLibrary(request, response) {
@@ -183,8 +197,8 @@ function handleError(request, response) {
 
 // Connect Port
 client.connect()
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`Wigoling on ${PORT}`);
-        });
-    })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Wigoling on ${PORT}`);
+    });
+  })
