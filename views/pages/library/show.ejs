@@ -20,6 +20,7 @@
             <li class="artist">Artist Name: <%= storedSong.artist %></li>
           </ul>
           <div id="button-wrap">
+            <img class="worm-in-library" src="images/wigol-logo-5.png" alt="wormy">
             <form action="<%= `/delete/${storedSong.id}?_method=DELETE` %>" method="post">
               <input type="hidden" name="id" value="<%= storedSong.id %>">
             <button id="wigol-btn" type="submit"><h4>Delete Song</h4></button>

@@ -14,10 +14,10 @@ body {
 }
 
 main {
-  overflow: scroll;
-  box-sizing: content-box;
-  /* min-height: 100%;
-  margin-bottom: -45px; */
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 header {
@@ -36,6 +36,8 @@ h1 {
 
 h2{
   font-size: 28px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 h4{
@@ -52,9 +54,12 @@ a{
 a:hover{
   color:darkgreen;
 }
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent; /* make scrollbar transparent */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 footer, .push {
