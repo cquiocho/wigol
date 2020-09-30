@@ -6,6 +6,7 @@
     <%- include('../../partials/head.ejs')%>
   </head>
   <body>
+    <div id="wrapper">
     <header>
       <%- include('../../partials/header.ejs')%>
     </header>
@@ -14,16 +15,18 @@
       <ul class="song">
         <li class="title">Song Title: <%= info.title %></li>
         <li class="artist">Artist Name: <%= info.artist %></li>
-        <li class="lyrics">Lyrics: <%= info.lyrics %></li>
+        <li class="lyrics"><%= info.lyrics %></li>
       </ul>
       <form id="lyric-results" action="/songs" method="post">
           <!-- partial built for following section wanted to test ejs befor converting -->
         <input type="hidden" name="title" value="<%= info.title %>">
         <input type="hidden" name="artist" value="<%= info.artist %>">
         <input type="hidden" name="lyrics" value="<%= info.lyrics %>">
-          <button type="submit">Add to Favorites</button>
+        <button id="wigol-btn" type="submit"><h4>Add To Favorites</h4></button>
         </form>
     </main>
+    <div class="push"></div>
+    </div>
     <footer>
       <%- include('../../partials/footer.ejs')%>
     </footer>

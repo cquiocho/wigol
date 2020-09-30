@@ -26,7 +26,7 @@ nav li{
 }
 .search-input{
   display:flex;
-  margin: 5px;
+  margin: 5px, 5px, 5px, 0;
 }
 
 #app-title img{
@@ -35,4 +35,53 @@ nav li{
 }
 #wigol-btn{ 
   background-color: rgba(0,0,0,.3);
+}
+
+.title {
+  font-size: 18px;
+  color: darkgoldenrod;
+  font-family: 'Architects Daughter', cursive;
+}
+
+.artist {
+  margin-bottom: 10px;
+  color: darkorange;
+  font-family: 'Fredericka the Great', cursive;
+}
+
+.lyrics {
+  color: darkgoldenrod;
+  font-family: 'Architects Daughter', cursive;
+  margin-bottom: 10px;
+}
+
+#button-wrap {
+  display: flex;
+}
+
+.worm-in-library {
+  max-width: 4%;
+  min-width: 3%;
+}
+
+#team-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.team-member {
+  margin-top: 20px;
+}
+
+.team-headshot {
+  max-width: 20%;
+  border-radius: 5px;
+}
+
+#content-wrap {
+
+}
+
+#button-wrap {
+  
 }

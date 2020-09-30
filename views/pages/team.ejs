@@ -5,18 +5,42 @@
     <%- include('../partials/head.ejs')%>
   </head>
   <body>
+    <div id="wrapper">
     <header>
       <%- include('../partials/header.ejs')%>
     </header>
     <main>
-      <section>
+      <section id="team-header">
         <h2>Meet the Wigol Team:</h2>
-        <p>about the team that brought you wigol</p>
       </section>
       <section>
-      about us
+        <article class="team-member">
+          <a href="https://www.linkedin.com/in/cquiocho/"><img class="team-headshot" src="images/christopher.jpg"alt="photo of Christopher Quiocho"/></a>
+          <h3 class="member-name">Christopher Quiocho</h3>
+          <p class="bio">Detail-oriented and seasoned professional with expertise in executive administrative support, business and talent development, managing and supervising teams, problem-solving and the ability to manage multiple tasks.
+          Possess exceptional organizational, communication and implementation skills to exceed goals and motivate continuous growth.
+          </p>
+        </article>
+        <article class="team-member">
+          <a href="https://www.linkedin.com/in/andre-o-martin/"><img class="team-headshot" src="images/dre-olly-tin-aka-drdoom.jpg"alt="photo of Andre-Olivier Martin"/></a>
+          <h3 class="member-name">Andre-Olivier Martin
+          </h3>
+          <p class="bio">Experienced Creative Specialist with a demonstrated history of working in the Fine Art industry. Skilled in Photography, Art Education, Barista, Concept Development, and Art. Strong marketing professional with a Bachelor's Degree focused in Fine/Studio Arts, General from Willem De Kooning Academy of Visual Arts.</p>
+        </article>
+        <article class="team-member">
+          <a href=""><img class="team-headshot" src="images/lee.jpg"alt="Photo of Lee Thomas"/></a>
+          <h3 class="member-name">Lee Thomas</h3>
+          <p class="bio">First and foremost I am a Student Software developer at Code Fellows. I love computers and build them as a hobby. I was born in Fairfax VA, grew up in Cincinnati OH, moved to Oak Park CA, and hope to move to Seattle WA to pursue software development. </p>
+        </article>
+        <article class="team-member">
+          <a href=""><img class="team-headshot" src="images/matt.jpg"alt="Photo of Matt Ravenmoore"/></a>
+          <h3 class="member-name">Matt Ravenmoore</h3>
+          <p class="bio">Greetings I am Matt Ravenmoore, I am a software designer with a background in theatrical, artistic and metal design. I thrive as a hands designer digging in and getting into what ever project i am doing, this allows me to push my boundary of my knowledge and learn at every turn. </p>
+        </article>
       </section>  
     </main>
+    <div class="push"></div>
+    </div>
   </body>
   <footer>
     <%- include('../partials/footer.ejs')%>
