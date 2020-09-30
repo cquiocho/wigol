@@ -36,3 +36,22 @@ nav li{
 #wigol-btn{ 
   background-color: rgba(0,0,0,.3);
 }
+
+.title {
+  font-size: 18px;
+  color: darkgoldenrod;
+  font-family: 'Architects Daughter', cursive;
+}
+
+.artist {
+  color: darkorange;
+  font-family: 'Fredericka the Great', cursive;
+}
+
+#content-wrap {
+
+}
+
+#button-wrap {
+  
+}
