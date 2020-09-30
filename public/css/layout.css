@@ -22,6 +22,11 @@
   justify-content: center;
 }
 
+#content-wrap {
+  margin-top: 15px;
+
+}
+
 .wrapper {
   min-height: 100%;
   margin-bottom: -45px;
