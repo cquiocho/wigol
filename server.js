@@ -130,16 +130,6 @@ function getSearchResults(request, response) {
       console.log(error)
       response.render('error.ejs');
     })
-  // const sql = 'SELECT * FROM chartlyric;';
-  // client.query(sql)
-  //     .then(results => {
-  //         let mySongs = results.rows;
-  //         response.status(200).render('pages/search/show', {mySongs : mySongs});
-  //     })
-  //     .catch(error => {
-  //         console.log(error)
-  //         response.render('error.ejs');
-  //     })
 }
 
 function renderTeamPage(request, response) {
@@ -185,7 +175,6 @@ function songDetails(request, response) {
       const storedSong = info.rows[0];
       console.log(storedSong);
       response.render('pages/library/detail', { storedSong: storedSong });
-      // PLEASE CHECK CSS PATH
     });
 }
 
@@ -212,10 +201,6 @@ function spotifyPing(req, res) {
 function handleError(request, response) {
   response.status(404).render('error.ejs');
 }
-// function Words(object) {
-//     this.artist = object.artist;
-//     this.song = object.song;
-// }
 
 // Connect Port
 client.connect()

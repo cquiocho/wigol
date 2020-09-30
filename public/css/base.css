@@ -1,30 +1,43 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
+html, body {
+  height: 100%;
+}
+
+body {
   background-color: #1C5253;
   margin: auto;
   /* border:2px dashed red; */
-  width: 420px;
+  /* width: 420px; */
 }
-main{
-  height: 300px;
+
+main {
+  overflow: scroll;
+  box-sizing: content-box;
+  /* min-height: 100%;
+  margin-bottom: -45px; */
 }
-header{
+
+header {
   border-bottom: 2.25px inset #f85e00;
   border-radius: 0 0 22px 22px; 
 }
-h1,h2,h3,h4,h5,h6 {
+
+h1, h2, h3, h4, h5, h6 {
   color: darkorange;
   font-family: 'Fredericka the Great', cursive;
 }
-h1{
+
+h1 {
   font-size: 54px;
 }
+
 h2{
   font-size: 28px;
 }
+
 h4{
   font-size: 18px;
 }
@@ -38,4 +51,12 @@ a{
 }
 a:hover{
   color:darkgreen;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+footer, .push {
+  height: 45px;
 }

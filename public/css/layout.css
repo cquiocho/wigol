@@ -21,3 +21,8 @@
   display: flex;
   justify-content: center;
 }
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -45px;
+}
