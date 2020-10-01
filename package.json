@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/cquiocho/wigol#readme",
   "dependencies": {
+    "base-64": "^0.1.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",

@@ -7,6 +7,7 @@ require('ejs');
 // Application Dependencies
 const cors = require('cors');
 const passport = require('passport');
+const base64 = require('base-64')
 const authCallbackPath = '/auth/spotify/callback';
 
 const SpotifyStrategy = require('passport-spotify').Strategy;
@@ -21,6 +22,7 @@ const superagent = require('superagent');
 const app = express();
 app.use(cors());
 app.use(passport.initialize());
+// const baseEncode = base64.encode()
 
 // Port Setup
 const PORT = process.env.PORT || 3001
@@ -29,53 +31,6 @@ client.on('error', error => {
   console.log(error);
 });
 
-// Middleware
-app.set('view engine', 'ejs');
-app.use(express.static('./public'));
-app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride('_method'));
-
-// Routes
-app.get('/', renderHomePage);
-app.get('/team', renderTeamPage);
-app.get('/search', getSearchResults);
-app.post('/songs', addSongToDatabase);
-app.get('/library', renderLibrary);
-app.delete('/delete/:song_id', deleteSong);
-app.get('/details/:song_id', songDetails);
-app.get('/spotifysearch', spotifyPing);
-
-// spotify Routes dont touch
-app.get('/auth/spotify',
-  passport.authenticate('spotify',
-    {
-      scope: ['user-read-email', 'user-read-private'],
-      showDialog: true
-    })
-);
-
-
-//   GET /auth/spotify/callback
-//     Use passport.authenticate() as route middleware to authenticate the
-//     request. If authentication fails, the user will be redirected back to the
-//     login page. Otherwise, the primary route function function will be called,
-//     which, in this example, will redirect the user to the home page.
-
-app.get(authCallbackPath,
-  passport.authenticate('spotify', { failureRedirect: '/login' }),
-  function (req, res) {
-    console.log(res.body)
-    res.json(res.body)
-  });
-app.get('/login', function (req, res) {
-  res.status(200).send('we are pineapple');
-})
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
-
-app.get('*', handleError);
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -105,6 +60,78 @@ passport.use(
     }
   )
 );
+
+
+// Middleware
+app.set('view engine', 'ejs');
+app.use(express.static('./public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+
+// Routes
+app.get('/', renderHomePage);
+app.get('/team', renderTeamPage);
+app.get('/search', getSearchResults);
+app.post('/songs', addSongToDatabase);
+app.get('/library', renderLibrary);
+app.delete('/delete/:song_id', deleteSong);
+app.get('/details/:song_id', songDetails);
+app.get('/spotifysearch', (req,res)=>{
+  res.status(200).send('spotify serch success')
+});
+
+// spotify Routes dont touch
+app.get('/auth/spotify',
+  passport.authenticate('spotify',
+    {
+      scope: ['user-read-email', 'user-read-private'],
+      showDialog: true
+    })
+);
+
+app.get(authCallbackPath,
+  passport.authenticate('spotify', { failureRedirect: '/login' }),
+  function (req, res) {
+    
+    let encodedData = base64.encode(`${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`);
+    const codeSpotify = req.query;
+    console.log(codeSpotify)
+    superagent.post('https://accounts.spotify.com/api/token')
+    .set({
+      'Content-Type':'application/x-www-form-urlencoded',
+      'Authorization' : `Basic ${encodedData}`}
+    )
+    .send( {
+      grant_type: "authorization_code",
+      code: codeSpotify.code,
+      redirect_uri: 'http://localhost:3000/'
+    })
+
+
+
+    let url = `https://api.spotify.com/v1/search/q=name:Queen`;
+    superagent.get(url)
+    .set('Authorization', `Bearer` )
+        .then(data => {
+        // console.log(data.body);
+        res.redirect('/spotifysearch')
+        })
+        .catch(error => {
+        console.log(error.text)
+        res.render('error.ejs');
+        })
+    res.redirect('/')
+  });
+app.get('/login', function (req, res) {
+  res.status(200).send('we are pineapple');
+})
+app.get('/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+app.get('*', handleError);
+
 
 
 function renderHomePage(request, response) {
