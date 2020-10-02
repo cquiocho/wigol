@@ -11,12 +11,12 @@
         <%- include('../../partials/header.ejs')%>
       </header>
     <main>
-      <h2>Saved Song Details:</h2>
+      <h2 class="headline">Saved Song Details:</h2>
       <section id="library-details">
           <ul class="song">
-            <li class="title">Song Title: <%= storedSong.song %></li>
-            <li class="artist">Artist Name: <%= storedSong.artist %></li>
-            <li class="lyrics"> <%= storedSong.lyrics %></li>
+            <li class="title"><h5>Song Title:</h5><p><%= storedSong.song %></p></li>
+            <li class="artist"><h5>Artist Name:</h5><p><%= storedSong.artist %></p></li>
+            <li class="lyrics"><h5>Song Lyrics:</h5><p><%= storedSong.lyrics %></p></li>
           </ul>
       </section>
     </main>

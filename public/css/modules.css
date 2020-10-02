@@ -1,25 +1,26 @@
-
-nav ul{
-  display:flex;
+a{
+  color: limegreen;
+  text-decoration: none;
+}
+a:hover,a:visited, a:active {
+  color:darkgreen;
+  text-decoration: none;
 }
 
 nav li{
-  border: 2px orange outset;
-  margin: 3px auto;
-  padding: 2.5px;
-  justify-content: space-around;
-  align-items: center;
+  border: 2px darkorange outset;
   border-radius: 5px;
   background-color: rgba(0,0,0,.3);
 }
+nav li:hover{
+  background-color: darkgreen;
+}
+.instructions{
+  padding-top:10px;
+}
 #footer-box{
-  height: 45px;
-  width: 100%;
   border-top: 2.5px orange ridge;
   border-radius: 45px 45px 0 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-image: url("../images/footer.jpg") ;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -28,54 +29,88 @@ nav li{
   display:flex;
   margin: 5px, 5px, 5px, 0;
 }
+main{
+  border-left: 2.25px solid limegreen;
+  border-right: 2.25px solid limegreen;
+  border-radius: 0 0 22px 22px;
+  background-color: rgba(0,0,0,0.3);
 
-#app-title img{
-  margin:5px;
-  height: 50px;
+}
+#search-bar input{
+  background-color: #1C5253 ;
+  border-radius: 5px;
+  padding:5px;
+  
+}
+#search-bar input:focus{
+  outline:limegreen 1px auto;
+  background-color: rgba(0,0,0,.25);
+  color:darkorange;
 }
 #wigol-btn{ 
   background-color: rgba(0,0,0,.3);
+  border-radius: 5px;
+  margin:auto;
 }
 
-.title {
-  font-size: 18px;
-  color: darkgoldenrod;
-  font-family: 'Architects Daughter', cursive;
+
+.artist, .lyrics,.title{
+  margin: 10px;
+}
+.lyrics{
+  line-height: 1.125em;
 }
 
-.artist {
-  margin-bottom: 10px;
-  color: darkorange;
-  font-family: 'Fredericka the Great', cursive;
-}
-
-.lyrics {
-  color: darkgoldenrod;
-  font-family: 'Architects Daughter', cursive;
-  margin-bottom: 10px;
-}
 
 #button-wrap {
   display: flex;
+  justify-content: space-between;
+  margin: 5px;
 }
 
 .worm-in-library {
-  max-width: 4%;
-  min-width: 3%;
+  width: 25px;
+  padding-left:5px
 }
 
-#team-header {
-  margin-top: 10px;
+#team-header, .headline {
+  padding-top: 20px;
   margin-bottom: 10px;
 }
 
 .team-member {
   margin-top: 20px;
+  display:flex;
+  background-color: rgba(50,205, 50, 0.25);
+  border-radius: 22px;
 }
 
 .team-headshot {
-  max-width: 20%;
+  max-width: 100px;
+  padding:5px;
   border-radius: 5px;
+  margin: 50% auto;
+}
+.member-name{
+  padding: 5px;
+  border-bottom: 2px limegreen;
+  border-style: groove;
+  margin-left:10px;
+  border-radius: 0 0 0 12px;
+}
+.member-name-r{
+  padding: 5px;
+  border-bottom: 2px limegreen;
+  border-style: groove;
+  margin-right:10px;
+  border-radius: 0 0 12px 0;
+  text-align:right;
+}
+.bio{
+  padding:5px;
+  line-height: 1.2em;
+  /* border: 2px limegreen;
+  border-style: groove;   */
 }
 
 #content-wrap {
