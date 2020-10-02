@@ -6,7 +6,7 @@
 - Version 2.0.0 - 09/29/2020 - Minimum viable product achieved.
 - Version 2.0.1 - 09/30/2020 - Enhanced CSS & Styling.
 - Version 2.0.2 - 10/01/2020 - Finalized for presentation.
-- Version 2.0.3 - 10/01/2020 - SPOTIFY data retrived css and code cleaned up.
+- Version 2.0.3 - 10/01/2020 - SPOTIFY data retrived CSS and code cleaned up.
 
 Have you ever found yourself singing or thinking of a song, and couldn’t seem to recall the exact lyrics? Heard a song and thought…”What are they saying?” or “Did I hear what I think I heard?”. If so, Wigol is an application for you!  
 
