@@ -1,22 +1,12 @@
 * {
   box-sizing: border-box;
 }
-
 html, body {
   height: 100%;
 }
-
 body {
-  background-color: #1C5253;
   margin: auto;
-  /* border:2px dashed red; */
   width: 480px;
-}
-#content-wrap{
-  background-color: #1C5253;
-  border: 2px inset limegreen;
-  border-radius: 5px;
-  padding: 2.25px;
 }
 nav ul{
   display:flex;
@@ -33,38 +23,134 @@ fieldset{
   display: flex;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: darkorange;
-  font-family: 'Fredericka the Great', cursive;
-}
-
 h1 {
   font-size: 54px;
 }
 h3{
+  font-size: 22px;
   font-weight: 600;
 }
 h2{
   font-size: 28px;
   margin-bottom: 15px;
 }
-
 h4{
+  font-size: 18px;
+}
+h5{
   font-size: 18px;
 }
 p{
   font-size: 12px;
-  color: darkorange;
-  font-family: 'Architects Daughter', cursive;  
+  line-height: 1.3em; 
 }
-
 footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
 }
-
 footer, .push {
   height: 45px;
+}
+.top-push{
+  height:142.5px;
+}
+header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* Tablet */
+@media only screen and (min-width:600px) and (max-width:768px) {
+  body{
+    width: 680px;
+  }
+  h1 {
+    font-size: 58px;
+  }
+  h2{
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+  h3{
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  h4{
+    font-size: 24px;
+  }
+  h5{
+    font-size: 18px;
+  }
+  p{
+    font-size: 16px;
+    padding: 5px;
+    line-height: 1.3em; 
+  }
+  .top-push{
+    height:145px;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width:768px) and (max-width:1080px) {
+  body{
+    width: 960px;
+    margin:auto;
+  }
+  h1 {
+    font-size: 74px;
+  }
+  h3{
+    font-size: 42px;
+    font-weight: 600;
+  }
+  h2{
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  h5{
+    font-size: 26px;
+  }
+  
+  h4{
+    font-size: 24px;
+  }
+  p{
+    font-size: 18px;
+    padding: 5px;
+  }
+}
+
+/* extra large screens */
+@media only screen and (min-width:1080px){
+  body{
+    width: 1160px;
+  }
+  h1 {
+    font-size: 78px;
+  }
+  h3{
+    font-size: 46px;
+    font-weight: 600;
+  }
+  h2{
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+  h5{
+    font-size: 28px;
+  }
+  
+  h4{
+    font-size: 26px;
+  }
+  p{
+    font-size: 20px;
+    padding: 5px;
+  }
 }

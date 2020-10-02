@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>Error</title>
+    <title>Wigol-It Errors</title>
+    <%- include('partials/head.ejs')%>
   </head>
   <body>
     <div id="wrapper">
-    <main>Unable to process request, check your spelling!</main>
+    <header>
+      <%- include('partials/header.ejs')%>
+    </header>
+    <div class="top-push"></div>
+    <main>
+      <section id="intro">
+        <h2 class="headline">Sorry you might be lost in the music!</h2>
+        <p class="instructions">Directions: hit the back button</p>
+      </section>
+    </main>
     <div class="push"></div>
     </div>
-    <footer>
-    </footer>
+  <footer>
+      <%- include('partials/footer.ejs')%>
+  </footer>
   </body>
 </html>

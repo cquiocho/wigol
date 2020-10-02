@@ -22,6 +22,7 @@ header {
   display: flex;
   background-color: rgba(0,0,0,.3);
   border-bottom:2.25px inset darkorange;
+  width: 100%;
 }
 #intro{
   height: 150px;

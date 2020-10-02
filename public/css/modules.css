@@ -6,11 +6,10 @@ a:hover,a:visited, a:active {
   color:darkgreen;
   text-decoration: none;
 }
-
 nav li{
   border: 2px darkorange outset;
   border-radius: 5px;
-  background-color: rgba(0,0,0,.3);
+  max-height:45px;
 }
 nav li:hover{
   background-color: darkgreen;
@@ -33,7 +32,6 @@ main{
   border-left: 2.25px solid limegreen;
   border-right: 2.25px solid limegreen;
   border-radius: 0 0 22px 22px;
-  background-color: rgba(0,0,0,0.3);
 
 }
 #search-bar input{
@@ -48,43 +46,34 @@ main{
   color:darkorange;
 }
 #wigol-btn{ 
-  background-color: rgba(0,0,0,.3);
   border-radius: 5px;
   margin:auto;
 }
-
-
 .artist, .lyrics,.title{
   margin: 10px;
 }
-.lyrics{
-  line-height: 1.125em;
-}
-
-
 #button-wrap {
   display: flex;
   justify-content: space-between;
-  margin: 5px;
+  margin: 5px;;
 }
-
 .worm-in-library {
-  width: 25px;
+  min-width: 25px;
+  max-height:45px;
   padding-left:5px
 }
-
 #team-header, .headline {
   padding-top: 20px;
   margin-bottom: 10px;
+  justify-content: center;
+  text-align: center;
 }
-
 .team-member {
   margin-top: 20px;
   display:flex;
   background-color: rgba(50,205, 50, 0.25);
   border-radius: 22px;
 }
-
 .team-headshot {
   max-width: 100px;
   padding:5px;
@@ -92,16 +81,10 @@ main{
   margin: 50% auto;
 }
 .member-name{
-  padding: 5px;
-  border-bottom: 2px limegreen;
-  border-style: groove;
   margin-left:10px;
   border-radius: 0 0 0 12px;
 }
 .member-name-r{
-  padding: 5px;
-  border-bottom: 2px limegreen;
-  border-style: groove;
   margin-right:10px;
   border-radius: 0 0 12px 0;
   text-align:right;
@@ -109,14 +92,15 @@ main{
 .bio{
   padding:5px;
   line-height: 1.2em;
-  /* border: 2px limegreen;
-  border-style: groove;   */
 }
-
-#content-wrap {
-
+#content-wrap{
+  border-radius: 5px;
+  padding: 2.25px;
 }
-
-#button-wrap {
-  
+.song-list{
+  display:flex;
+  flex: row;
+  justify-content: space-around;
+  text-align: center;
+  padding:5px;
 }

@@ -1,0 +1,35 @@
+body,header,#content-wrap {
+  background-color: #1C5253;
+}
+header {
+  border-bottom: 2.25px inset #f85e00;
+  border-radius: 0 0 22px 22px; 
+}
+#content-wrap{
+  border: 2px inset limegreen;
+}
+#wigol-btn,main,nav li{
+  background-color: rgba(0,0,0,.3);
+}
+h1, h2, h3, h4, h5, h6 {
+  color: darkorange;
+  font-family: 'Fredericka the Great', cursive;
+  font-weight: 500;
+  margin-bottom: 5px;
+  padding:2.5px;
+}
+.member-name-r,.member-name{
+  padding: 5px;
+  border-bottom: 2px limegreen groove;
+}
+p{
+  color: darkorange;
+  font-family: 'Architects Daughter', cursive;
+}
+
+a{
+  color: limegreen;
+}
+a:hover{
+  color:darkgreen;
+}
