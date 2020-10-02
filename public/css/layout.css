@@ -1,24 +1,41 @@
 #nav-box{
-  height: 35px;
+  height: 100%;
+  padding:5px;
+}
+nav li{
+  margin: 5px auto;
+  padding: 5px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 75%;
+}
+header {
+  border-bottom: 2.25px inset darkorange;
+  border-radius: 0 0 22px 22px; 
+  border-left: 2.25px solid darkorange;
+  border-right: 2.25px solid darkorange;
 }
 #app-title{
   height: 75px;
-  background-color: rgba(0,0,0,.3);
   justify-content:center;
   align-items: center;
-  border-bottom:2.25px inset #f85e00;
-  border-radius: 0 0 45px 45px;
   display: flex;
+  background-color: rgba(0,0,0,.3);
+  border-bottom:2.25px inset darkorange;
+  width: 100%;
 }
 #intro{
   height: 150px;
   width: 85%;
   margin: auto;
-  display: flex;
+  padding-top:10px;
   align-items: center;
+  text-align: center;
 }
+
 #search-bar{
   display: flex;
+  margin: auto;
   justify-content: center;
 }
 
@@ -26,7 +43,24 @@
   margin-top: 15px;
 
 }
-
+main{
+  margin-left: 12%;
+  margin-right: 12%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+}
+#app-title img{
+  margin:10px;
+  height: 50px;
+}
+#footer-box{
+  height: 45px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .wrapper {
   min-height: 100%;
   margin-bottom: -45px;

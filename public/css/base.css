@@ -1,67 +1,156 @@
 * {
   box-sizing: border-box;
 }
-
 html, body {
   height: 100%;
 }
-
 body {
-  background-color: #1C5253;
   margin: auto;
-  /* border:2px dashed red; */
-  /* width: 420px; */
+  width: 480px;
 }
-
-main {
-  margin-left: 10%;
-  margin-right: 10%;
-  padding-left: 10%;
-  padding-right: 10%;
+nav ul{
+  display:flex;
 }
-
-header {
-  border-bottom: 2.25px inset #f85e00;
-  border-radius: 0 0 22px 22px; 
+input{
+  text-align: center;
+  margin: 8px auto;
+  padding: 2.5px;
 }
-
-h1, h2, h3, h4, h5, h6 {
-  color: darkorange;
-  font-family: 'Fredericka the Great', cursive;
+button{
+  padding:5px;
+}
+fieldset{
+  display: flex;
 }
 
 h1 {
   font-size: 54px;
 }
-
+h3{
+  font-size: 22px;
+  font-weight: 600;
+}
 h2{
   font-size: 28px;
-  margin-top: 15px;
   margin-bottom: 15px;
 }
-
 h4{
+  font-size: 18px;
+}
+h5{
   font-size: 18px;
 }
 p{
   font-size: 12px;
-  color: darkgoldenrod;
-  font-family: 'Architects Daughter', cursive;
+  line-height: 1.3em; 
 }
-a{
-  color: limegreen;
-}
-a:hover{
-  color:darkgreen;
-}
-
 footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
 }
-
 footer, .push {
   height: 45px;
+}
+.top-push{
+  height:142.5px;
+}
+header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* Tablet */
+@media only screen and (min-width:600px) and (max-width:768px) {
+  body{
+    width: 680px;
+  }
+  h1 {
+    font-size: 58px;
+  }
+  h2{
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+  h3{
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  h4{
+    font-size: 24px;
+  }
+  h5{
+    font-size: 18px;
+  }
+  p{
+    font-size: 16px;
+    padding: 5px;
+    line-height: 1.3em; 
+  }
+  .top-push{
+    height:145px;
+  }
+}
+
+/* Desktop */
+@media only screen and (min-width:768px) and (max-width:1080px) {
+  body{
+    width: 960px;
+    margin:auto;
+  }
+  h1 {
+    font-size: 74px;
+  }
+  h3{
+    font-size: 42px;
+    font-weight: 600;
+  }
+  h2{
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+  h5{
+    font-size: 26px;
+  }
+  
+  h4{
+    font-size: 24px;
+  }
+  p{
+    font-size: 18px;
+    padding: 5px;
+  }
+}
+
+/* extra large screens */
+@media only screen and (min-width:1080px){
+  body{
+    width: 1160px;
+  }
+  h1 {
+    font-size: 78px;
+  }
+  h3{
+    font-size: 46px;
+    font-weight: 600;
+  }
+  h2{
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+  h5{
+    font-size: 28px;
+  }
+  
+  h4{
+    font-size: 26px;
+  }
+  p{
+    font-size: 20px;
+    padding: 5px;
+  }
 }

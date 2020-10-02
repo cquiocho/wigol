@@ -6,21 +6,14 @@ require('ejs');
 
 // Application Dependencies
 const cors = require('cors');
-const passport = require('passport');
 const authCallbackPath = '/auth/spotify/callback';
-
-const SpotifyStrategy = require('passport-spotify').Strategy;
-
-// const { request, response } = require('express');
 const express = require('express');
 const methodOverride = require('method-override');
 const pg = require('pg');
 const superagent = require('superagent');
-
 // Application Setup
 const app = express();
 app.use(cors());
-app.use(passport.initialize());
 
 // Port Setup
 const PORT = process.env.PORT || 3001
@@ -43,68 +36,52 @@ app.post('/songs', addSongToDatabase);
 app.get('/library', renderLibrary);
 app.delete('/delete/:song_id', deleteSong);
 app.get('/details/:song_id', songDetails);
-app.get('/spotifysearch', spotifyPing);
+app.get('/spotifyLoggedin', spotLoggin)
 
 // spotify Routes dont touch
-app.get('/auth/spotify',
-  passport.authenticate('spotify',
-    {
-      scope: ['user-read-email', 'user-read-private'],
-      showDialog: true
+app.get('/auth/spotify', function(request,response){
+  const url = `https://accounts.spotify.com/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&redirect_uri=${process.env.APP_ROOT}${authCallbackPath}&show_dialog=true&scope=user-read-email,user-read-private`;
+  superagent.get(url)
+    .then(results =>{
+      console.log(results.redirects)
+      response.redirect(results.redirects[0])
     })
-);
-
-
-//   GET /auth/spotify/callback
-//     Use passport.authenticate() as route middleware to authenticate the
-//     request. If authentication fails, the user will be redirected back to the
-//     login page. Otherwise, the primary route function function will be called,
-//     which, in this example, will redirect the user to the home page.
+});
 
 app.get(authCallbackPath,
-  passport.authenticate('spotify', { failureRedirect: '/login' }),
   function (req, res) {
-    console.log(res.body)
-    res.json(res.body)
+    const codeSpotify = req.query;
+    console.log(codeSpotify.code)
+    let token = [];
+    superagent.post('https://accounts.spotify.com/api/token')
+      .set({
+        'Content-Type':'application/x-www-form-urlencoded',
+      })
+      .send( {
+        grant_type: 'authorization_code',
+        code: codeSpotify.code,
+        redirect_uri: `${process.env.APP_ROOT}${authCallbackPath}`,
+        client_id: process.env.CLIENT_ID,
+        client_secret:process.env.CLIENT_SECRET
+      })
+      .then(response =>{
+        console.log(response.body);
+        token = response.body;
+
+        res.redirect(`/spotifyLoggedin?access_token=${token.access_token}`)
+      }
+      // create a db to dump res.body into
+      // access db at api call for header information
+      ).catch((e)=>{console.log(e)})
+    console.log('im a token' , token)
+
   });
 app.get('/login', function (req, res) {
   res.status(200).send('we are pineapple');
 })
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
 
 app.get('*', handleError);
 
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function (obj, done) {
-  done(null, obj);
-});
-
-passport.use(
-  new SpotifyStrategy(
-    {
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: 'http://localhost:' + PORT + authCallbackPath,
-    },
-    //   callbackURL will change when we have to deploy to heroku
-    function (accessToken, refreshToken, expires_in, profile, done) {
-      // asynchronous verification, for effect...
-      process.nextTick(function () {
-        // To keep the example simple, the user's spotify profile is returned to
-        // represent the logged-in user. In a typical application, you would want
-        // to associate the spotify account with a user record in your database,
-        // and return that user instead.
-        return done(null, profile);
-      });
-    }
-  )
-);
 
 
 function renderHomePage(request, response) {
@@ -178,25 +155,26 @@ function songDetails(request, response) {
     });
 }
 
-function spotifyPing(req, res) {
+function spotLoggin(request,response) {
 
-  let url = `https://api.spotify.com/v1/search/q=name:Queen`;
-
+  let url = `https://api.spotify.com/v1/me`;
+  console.log("rar",request.query)
   superagent.get(url)
-  .set('Authorization', )
+    .set('Authorization', `Bearer ${request.query.access_token}` )
     .then(data => {
-      console.log(data.body);
+      console.log('YAY',data.body);
+      let userInfo = {};
+      userInfo.name = data.body.display_name;
+      userInfo.email = data.body.email;
+      userInfo.userStatus = data.body.product;
 
-
+      response.render('pages/Spot.ejs', { userInfo: userInfo })
     })
     .catch(error => {
       console.log(error)
-      res.render('error.ejs');
+      response.render('error.ejs');
     })
 }
-
-
-
 
 function handleError(request, response) {
   response.status(404).render('error.ejs');

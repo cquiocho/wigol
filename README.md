@@ -3,9 +3,12 @@
 - Version 1.0.0 - 09/28/2020 - Initial application start and setup.
 - Version 1.1.0 - 09/28/2020 - API connectivity, 'home' and 'search results' pages complete. Overall functionality is minimal.
 - Version 1.2.0 - 09/29/20200 - Styling added, 'favorites' and 'song details' pages added. Overall functionality is improved and more dynamic.
-- Version 2.0.0 - 09/29/2020 - Minimum viable product achieved. 
+- Version 2.0.0 - 09/29/2020 - Minimum viable product achieved.
+- Version 2.0.1 - 09/30/2020 - Enhanced CSS & Styling.
+- Version 2.0.2 - 10/01/2020 - Finalized for presentation.
+- Version 2.0.3 - 10/01/2020 - SPOTIFY data retrived CSS and code cleaned up.
 
-Have you ever thought of a song and just couldn't remember the lyrics? Or heard a song and thought, "What are they saying? Did I hear what I think I heard?" If so, this is an application for you! 
+Have you ever found yourself singing or thinking of a song, and couldn’t seem to recall the exact lyrics? Heard a song and thought…”What are they saying?” or “Did I hear what I think I heard?”. If so, Wigol is an application for you!  
 
 Introducing Wigol, an application that will retrieve data from a third-party API that will include lyrics, song name and artist name. You will have the option to save your favorite lyrics to your own library and easily make updates to your list of songs.
 
@@ -34,7 +37,7 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 
 ### User Stories
 
-**As a USER I would like an application that can search for song lyrics by ‘artist name’, ‘song name’ or by ‘entering a few lines of lyrics from a song’ and retrieve it’s complete lyrics for my personal use and entertainment.**
+**As a USER, I would like an application that can search for song lyrics by entering an “artist name” and “song name”, and will retrieve it’s complete song lyrics for my personal reference, use and entertainment.**
 
 ### Software Requirements
 
@@ -78,6 +81,20 @@ Introducing Wigol, an application that will retrieve data from a third-party API
 1. song VARCHAR(255)
 1. lyrics TEXT
 
+### Resources & Links
+
+- [Link to Deployed Application](https://wigol-wigol.herokuapp.com/)
+- [Link to GitHub Repository](https://github.com/cquiocho/wigol)
+- [LYRICS.OVH](https://lyrics.ovh/)
+- [Passport.js](http://www.passportjs.org/packages/passport-spotify/)
+- [Web API | Spotify for Developers](https://developer.spotify.com/documentation/web-api/)
+- [Sticky Footer, Five Ways](https://css-tricks.com/couple-takes-sticky-footer/)
+- Code Fellows Teaching Assistants:
+    - Chance Harmon
+    - Morgan Heinemann
+    - Skyler Burger
+- External Resource:
+    - Chris Hudson, - [LinkedIn](https://www.linkedin.com/in/chris-anthony-hudson/)
 
 
 

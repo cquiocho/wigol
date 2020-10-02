@@ -24,8 +24,6 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
-    "passport": "^0.4.1",
-    "passport-spotify": "^1.1.0",
     "pg": "^8.3.3",
     "superagent": "^6.1.0"
   }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wigol-It Spotify account info</title>
+    <%- include('../partials/head.ejs')%>
+  </head>
+  <body>
+    <div id="wrapper">
+    <header>
+      <%- include('../partials/header.ejs')%>
+    </header>
+    <div class="top-push"></div>
+    <main>
+      <section id="spotdump">
+        <h2 class="headline">Its you!!! <%= userInfo.name %></h2>
+        <p class="instructions">I HAVE DATA</p>
+        <p class="datadump">your basic user info from spotify:</p>
+        <ul>
+          <li>user name: <%= userInfo.name%></li>
+          <li>user email: <%= userInfo.email%></li>
+          <li>user subscription status: <%= userInfo.userStatus%></li>
+        </ul>
+      </section>
+    </main>
+    <div class="push"></div>
+    </div>
+  <footer>
+      <%- include('../partials/footer.ejs')%>
+  </footer>
+  </body>
+</html>
