@@ -12,7 +12,12 @@ body {
   /* border:2px dashed red; */
   width: 480px;
 }
-
+#content-wrap{
+  background-color: #1C5253;
+  border: 2px inset limegreen;
+  border-radius: 5px;
+  padding: 2.25px;
+}
 nav ul{
   display:flex;
 }

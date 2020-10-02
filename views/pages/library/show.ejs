@@ -11,24 +11,24 @@
       <%- include('../../partials/header.ejs')%>
     </header>
     <main>
-      <h2>Here Are Your Saved songs:</h2>
+      <h2 class="headline">Here Are Your Saved songs:</h2>
         <% arrayofresults.forEach(storedSong =>{ %>
           <!-- partial built for following section wanted to test ejs befor converting -->
         <div id="content-wrap"> 
           <ul class="song">
-            <li class="title">Song Title: <%= storedSong.song %></li>
-            <li class="artist">Artist Name: <%= storedSong.artist %></li>
+            <li class="title"><h5>Song Title: <%= storedSong.song %></h5></li>
+            <li class="artist"><h5>Artist Name: <%= storedSong.artist %></h5></li>
           </ul>
-          <div id="button-wrap">
-            <img class="worm-in-library" src="images/wigol-logo-5.png" alt="wormy">
-            <form action="<%= `/delete/${storedSong.id}?_method=DELETE` %>" method="post">
-              <input type="hidden" name="id" value="<%= storedSong.id %>">
-            <button id="wigol-btn" type="submit"><h4>Delete Song</h4></button>
-            </form>
-            <form action="<%= `/details/${storedSong.id}` %>" method="get">
-              <input type="hidden" name="lyrics" value="<%= storedSong.lyrics %>">
-            <button id="wigol-btn" type="submit"><h4>Details</h4></button>
-            </form>
+            <div id="button-wrap">
+              <form class="delete-btn" action="<%= `/delete/${storedSong.id}?_method=DELETE` %>" method="post">
+                <input type="hidden" name="id" value="<%= storedSong.id %>">
+                <button id="wigol-btn" type="submit"><h4>Delete Song</h4></button>
+              </form>
+              <img class="worm-in-library" src="images/wigol-logo-5.png" alt="wormy">
+              <form class="detail-btn" action="<%= `/details/${storedSong.id}` %>" method="get">
+                <input type="hidden" name="lyrics" value="<%= storedSong.lyrics %>">
+                <button id="wigol-btn" type="submit"><h4>Details</h4></button>
+              </form>
           </div>
         </div>   
         <% }) %>
