@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <!-- partials to be checked for functionality -->
   <head>
     <title>Wigol results</title>
     <%- include('../../partials/head.ejs')%>
   </head>
+  <div class="top-push"></div>
   <body>
     <div id="wrapper">
     <header>
@@ -18,7 +18,6 @@
         <li class="lyrics"><h5>Song Lyrics:</h5><p><%= info.lyrics %></li></p>
       </ul>
       <form id="lyric-results" action="/songs" method="post">
-          <!-- partial built for following section wanted to test ejs befor converting -->
         <input type="hidden" name="title" value="<%= info.title %>">
         <input type="hidden" name="artist" value="<%= info.artist %>">
         <input type="hidden" name="lyrics" value="<%= info.lyrics %>">
