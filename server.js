@@ -7,13 +7,10 @@ require('ejs');
 // Application Dependencies
 const cors = require('cors');
 const authCallbackPath = '/auth/spotify/callback';
-
 const express = require('express');
 const methodOverride = require('method-override');
 const pg = require('pg');
 const superagent = require('superagent');
-const { response } = require('express');
-
 // Application Setup
 const app = express();
 app.use(cors());
@@ -43,7 +40,7 @@ app.get('/spotifyLoggedin', spotLoggin)
 
 // spotify Routes dont touch
 app.get('/auth/spotify', function(request,response){
-  const url = `https://accounts.spotify.com/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&redirect_uri=http://localhost:3000${authCallbackPath}&show_dialog=true&scope=user-read-email,user-read-private`;
+  const url = `https://accounts.spotify.com/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&redirect_uri=${process.env.APP_ROOT}${authCallbackPath}&show_dialog=true&scope=user-read-email,user-read-private`;
   superagent.get(url)
     .then(results =>{
       console.log(results.redirects)
@@ -53,50 +50,49 @@ app.get('/auth/spotify', function(request,response){
 
 app.get(authCallbackPath,
   function (req, res) {
-    console.log("banapinapple")
-    // let encodedData = `${base64.encode(process.env.CLIENT_ID)}:${base64.encode(process.env.CLIENT_SECRET)}`;
     const codeSpotify = req.query;
     console.log(codeSpotify.code)
     let token = [];
     superagent.post('https://accounts.spotify.com/api/token')
       .set({
         'Content-Type':'application/x-www-form-urlencoded',
-        // 'Authorization' : `Basic ${encodedData}`
       })
       .send( {
-        grant_type: "authorization_code",
+        grant_type: 'authorization_code',
         code: codeSpotify.code,
-        redirect_uri: `http://localhost:3000${authCallbackPath}`,
+        redirect_uri: `${process.env.APP_ROOT}${authCallbackPath}`,
         client_id: process.env.CLIENT_ID,
         client_secret:process.env.CLIENT_SECRET
       })
       .then(response =>{
         console.log(response.body);
         token = response.body;
+
         res.redirect(`/spotifyLoggedin?access_token=${token.access_token}`)
       }
       // create a db to dump res.body into
       // access db at api call for header information
       ).catch((e)=>{console.log(e)})
-    console.log('im a token.' , token)
+    console.log('im a token' , token)
+
   });
 app.get('/login', function (req, res) {
   res.status(200).send('we are pineapple');
 })
-app.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
 
 app.get('*', handleError);
+
+
 
 function renderHomePage(request, response) {
   response.status(200).render('index.ejs');
 }
 
 function getSearchResults(request, response) {
+
   // console.log(request.query);
   let url = `https://api.lyrics.ovh/v1/${request.query.artist}/${request.query.song}`;
+
   superagent.get(url)
     .then(data => {
       console.log(data.body);
@@ -160,8 +156,9 @@ function songDetails(request, response) {
 }
 
 function spotLoggin(request,response) {
+
   let url = `https://api.spotify.com/v1/me`;
-  console.log('rar',request.query)
+  console.log("rar",request.query)
   superagent.get(url)
     .set('Authorization', `Bearer ${request.query.access_token}` )
     .then(data => {
